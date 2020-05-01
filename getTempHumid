@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Ryan Kupka, Preston Haynes, Aidan Irish, Wenning Jiang, Muhammad Hassan Rao, Sanskriti Timseena
+
+qs=${QUERY_STRING}
+temp=$(python temp.py)
+if [ "$qs" = "temp" ]; then
+	temp=$(python temp-only.py)
+elif [ "$qs" = "humid" ]; then
+	temp=$(python humid-only.py)
+fi
+
+echo "Content-type: text/html"
+echo ""
+echo "<html>"
+echo "<style>"
+echo "#temp {display: flex; justify-content: center;font-family:Comic Sans MS; font-size: 80px;}"
+echo "</style>"
+echo "<head><title>test</title></html>"
+echo "<body><p id=\"temp\">$temp</br></p></body>"
+echo "</html>"
+exit 0
